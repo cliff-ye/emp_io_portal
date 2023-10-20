@@ -1,0 +1,53 @@
+.EmpListComponent {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  padding: 3rem 6rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  overflow-y: scroll;
+  height: 500px;
+  background-color: rgb(33, 37, 41);
+  /* background-image: linear-gradient(to top left, #f94c10, #900c3f); */
+  /* background-color: #d6b575; */
+  /* background-image: linear-gradient(to top left, #af0404, #af0404); */
+}
+
+.navbar-custom {
+  background-color: #252525;
+}
+
+.btn-logout {
+  background-color: #f24c3d;
+  color: #ffffff;
+  border: none;
+}
+
+.footer {
+  color: #ffffff;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  background-image: linear-gradient(to top left, #f94c10, #900c3f);
+
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .EmpListComponent {
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .footer {
+    width: 100%;
+  }
+}

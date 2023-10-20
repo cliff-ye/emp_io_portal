@@ -1,0 +1,32 @@
+body {
+  /* background-image: linear-gradient(to top left, #f94c10, #900c3f); */
+  background-color: #252525;
+}
+
+.inputlook {
+  border-radius: 0.5rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.4);
+  font-family: inherit;
+  text-align: center;
+  color: #333;
+  transition: all 0.3s;
+}
+
+label,
+h2 {
+  color: #f1efef;
+}
+
+.btn--look {
+  width: 100%;
+  border-radius: 0.3rem;
+  background-color: #f24c3d;
+  border: none;
+  color: #ffffff;
+}
+
+.ErrorComponent,
+.ListComponent {
+  color: #ffffff;
+}
