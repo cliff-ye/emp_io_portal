@@ -5,8 +5,8 @@ import FooterComponent from "./FooterComponent";
 
 export default function EmpListComponent() {
   const today = new Date();
-  const targetDate = new Date(
-    today.getFullYear() + 12,
+  const birth_date = new Date(
+    today.getFullYear() - 25,
     today.getMonth(),
     today.getDay()
   );
@@ -15,21 +15,21 @@ export default function EmpListComponent() {
       id: 1,
       fullName: "John Doe",
       address: "Accra, Ghana",
-      birthDate: targetDate,
+      birthDate: birth_date,
       emailAddress: "jd@gmail.com",
     },
     {
       id: 2,
       fullName: "Precious Wills",
       address: "Central, Ghana",
-      birthDate: targetDate,
+      birthDate: birth_date,
       emailAddress: "precious.wills@gmail.com",
     },
     {
       id: 3,
       fullName: "Max Brown",
       address: "Volta, Ghana",
-      birthDate: targetDate,
+      birthDate: birth_date,
       emailAddress: "maxb@gmail.com",
     },
   ];
