@@ -2,6 +2,7 @@ import "./EmpListComponent.css";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuthContext } from "./security/AuthContext";
+import { useState } from "react";
 
 export default function HeaderComponent() {
   const authContext = useAuthContext();
@@ -21,12 +22,13 @@ export default function HeaderComponent() {
     alertLogoutMsg();
     navigate("/login");
   };
+
   return (
     <>
       <nav className="navbar navbar-dark navbar-expand-md">
         <div className="container-fluid">
           <Link className="navbar-brand ms-5" to="/emp-list">
-            <span>Emp.io</span>
+            <span>emp.io</span>
           </Link>
 
           <button

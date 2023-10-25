@@ -2,37 +2,18 @@ import "./EmpListComponent.css";
 import HeaderComponent from "./HeaderComponent";
 import { Link } from "react-router-dom";
 import FooterComponent from "./FooterComponent";
+import { useEffect, useState } from "react";
+import { retrieveAllEmployees } from "./api_services/EmployeeApiService";
 
 export default function EmpListComponent() {
-  const today = new Date();
-  const birth_date = new Date(
-    today.getFullYear() - 25,
-    today.getMonth(),
-    today.getDay()
-  );
-  const empdata = [
-    {
-      id: 1,
-      fullName: "John Doe",
-      address: "Accra, Ghana",
-      birthDate: birth_date,
-      emailAddress: "jd@gmail.com",
-    },
-    {
-      id: 2,
-      fullName: "Precious Wills",
-      address: "Central, Ghana",
-      birthDate: birth_date,
-      emailAddress: "precious.wills@gmail.com",
-    },
-    {
-      id: 3,
-      fullName: "Max Brown",
-      address: "Volta, Ghana",
-      birthDate: birth_date,
-      emailAddress: "maxb@gmail.com",
-    },
-  ];
+  const [empdata, setEmpData] = useState([]);
+  useEffect(() => loadEmployeeData(), []);
+
+  function loadEmployeeData() {
+    retrieveAllEmployees()
+      .then((response) => setEmpData(response.data))
+      .catch((error) => console.log(error));
+  }
 
   return (
     <>
@@ -58,7 +39,7 @@ export default function EmpListComponent() {
                   <td>{emp_data.id}</td>
                   <td>{emp_data.fullName}</td>
                   <td>{emp_data.address}</td>
-                  <td>{emp_data.birthDate.toDateString()}</td>
+                  <td>{emp_data.birthDate}</td>
                   <td>{emp_data.emailAddress}</td>
                   <td>
                     <Link to="#" className="btn btn-info" role="button">
