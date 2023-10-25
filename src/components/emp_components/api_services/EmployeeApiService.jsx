@@ -5,3 +5,5 @@ const apiClient = axios.create({
 });
 
 export const retrieveAllEmployees = () => apiClient.get("/employees");
+
+export const deleteEmp = (id) => apiClient.delete(`/employees/${id}`);

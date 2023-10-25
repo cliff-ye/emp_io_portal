@@ -3,7 +3,11 @@ import HeaderComponent from "./HeaderComponent";
 import { Link } from "react-router-dom";
 import FooterComponent from "./FooterComponent";
 import { useEffect, useState } from "react";
-import { retrieveAllEmployees } from "./api_services/EmployeeApiService";
+import {
+  deleteEmp,
+  retrieveAllEmployees,
+} from "./api_services/EmployeeApiService";
+import Swal from "sweetalert2";
 
 export default function EmpListComponent() {
   const [empdata, setEmpData] = useState([]);
@@ -12,6 +16,26 @@ export default function EmpListComponent() {
   function loadEmployeeData() {
     retrieveAllEmployees()
       .then((response) => setEmpData(response.data))
+      .catch((error) => console.log(error));
+  }
+
+  const deleteMsg = (msg) => {
+    Swal.fire({
+      title: `${msg}`,
+      text: "",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+  };
+
+  function deleteEmployee(id) {
+    console.log(id);
+    deleteEmp(id)
+      .then((response) => {
+        console.log(response);
+        deleteMsg(response.data);
+        loadEmployeeData();
+      })
       .catch((error) => console.log(error));
   }
 
@@ -47,9 +71,13 @@ export default function EmpListComponent() {
                     </Link>
                   </td>
                   <td>
-                    <Link to="#" className="btn btn-danger" role="button">
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteEmployee(emp_data.id)}
+                      role="button"
+                    >
                       delete
-                    </Link>
+                    </button>
                   </td>
                 </tr>
               ))}
