@@ -8,10 +8,12 @@ import {
   retrieveAllEmployees,
 } from "./api_services/EmployeeApiService";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function EmpListComponent() {
   const [empdata, setEmpData] = useState([]);
   useEffect(() => loadEmployeeData(), []);
+  const navigate = useNavigate();
 
   function loadEmployeeData() {
     retrieveAllEmployees()
@@ -37,6 +39,10 @@ export default function EmpListComponent() {
         loadEmployeeData();
       })
       .catch((error) => console.log(error));
+  }
+
+  function updateEmployee(id) {
+    navigate(`/employee/${id}`);
   }
 
   return (
@@ -66,15 +72,17 @@ export default function EmpListComponent() {
                   <td>{emp_data.birthDate}</td>
                   <td>{emp_data.emailAddress}</td>
                   <td>
-                    <Link to="#" className="btn btn-info" role="button">
+                    <button
+                      className="btn btn-info"
+                      onClick={() => updateEmployee(emp_data.id)}
+                    >
                       update
-                    </Link>
+                    </button>
                   </td>
                   <td>
                     <button
                       className="btn btn-danger"
                       onClick={() => deleteEmployee(emp_data.id)}
-                      role="button"
                     >
                       delete
                     </button>

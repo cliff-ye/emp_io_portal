@@ -3,6 +3,7 @@ import ErrorComponent from "./ErrorComponent";
 import EmpListComponent from "./EmpListComponent";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import AuthProvider, { useAuthContext } from "./security/AuthContext";
+import EmployeeComponent from "./EmployeeComponent";
 
 function AuthenticateRoute({ children }) {
   const authContext = useAuthContext();
@@ -24,6 +25,14 @@ export default function EmpApp() {
                 element={
                   <AuthenticateRoute>
                     <EmpListComponent />
+                  </AuthenticateRoute>
+                }
+              />
+              <Route
+                path="/employee/:id"
+                element={
+                  <AuthenticateRoute>
+                    <EmployeeComponent />
                   </AuthenticateRoute>
                 }
               />

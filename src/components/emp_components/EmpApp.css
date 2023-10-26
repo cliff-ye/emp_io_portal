@@ -18,7 +18,8 @@ h2 {
   color: #f1efef;
 }
 
-.btn--look {
+.btn--look,
+.btn-look {
   width: 100%;
   border-radius: 0.3rem;
   background-color: #f24c3d;
@@ -26,7 +27,10 @@ h2 {
   color: #ffffff;
 }
 
-.ErrorComponent,
-.ListComponent {
+.btn-look {
+  width: 20%;
+}
+
+.ErrorComponent {
   color: #ffffff;
 }
