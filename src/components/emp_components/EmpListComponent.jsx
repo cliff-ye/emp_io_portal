@@ -54,7 +54,6 @@ export default function EmpListComponent() {
           <table className="table table-dark">
             <thead>
               <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Full Name</th>
                 <th scope="col">Address</th>
                 <th scope="col">Birth Date</th>
@@ -66,7 +65,6 @@ export default function EmpListComponent() {
             <tbody>
               {empdata.map((emp_data) => (
                 <tr key={emp_data.id}>
-                  <td>{emp_data.id}</td>
                   <td>{emp_data.fullName}</td>
                   <td>{emp_data.address}</td>
                   <td>{emp_data.birthDate}</td>
