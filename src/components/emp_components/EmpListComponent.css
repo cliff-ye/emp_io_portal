@@ -21,10 +21,21 @@
   background-color: #252525;
 }
 
-.btn-logout {
+.btn-logout,
+.btn-addEmp {
   background-color: #f24c3d;
   color: #ffffff;
   border: none;
+}
+
+.btn-addEmp {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+}
+
+.btn-addEmp:hover {
+  background-color: #900c3f;
 }
 
 .footer {
@@ -41,6 +52,7 @@
 @media (max-width: 1000px) {
   .EmpListComponent {
     width: 100%;
+    top: 58%;
   }
 
   table {

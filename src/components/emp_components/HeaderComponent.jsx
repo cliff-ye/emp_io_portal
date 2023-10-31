@@ -44,11 +44,7 @@ export default function HeaderComponent() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav ms-auto">
-              <Link className="nav-link active " aria-current="page" to="#">
-                <span>Add Employee</span>
-              </Link>
-
-              <Link className="nav-link " aria-current="page" to="#">
+              <Link className="nav-link " aria-current="page" to="/emp-list">
                 <span>All Employees</span>
               </Link>
             </div>

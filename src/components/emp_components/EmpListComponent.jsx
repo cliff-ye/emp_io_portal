@@ -45,9 +45,16 @@ export default function EmpListComponent() {
     navigate(`/employee/${id}`);
   }
 
+  function addNewEmp() {
+    navigate(`/employee/0`);
+  }
+
   return (
     <>
       <HeaderComponent />
+      <button className="btn btn-addEmp" onClick={addNewEmp}>
+        Add new employee
+      </button>
       <div className="EmpListComponent">
         <div>
           <h1>Employees </h1>

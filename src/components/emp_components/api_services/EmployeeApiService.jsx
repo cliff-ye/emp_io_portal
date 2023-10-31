@@ -11,3 +11,5 @@ export const deleteEmp = (id) => apiClient.delete(`/employees/${id}`);
 export const retrieveEmployee = (id) => apiClient.get(`/employees/${id}`);
 
 export const updateEmp = (employee) => apiClient.put(`/employees`, employee);
+
+export const createEmp = (employee) => apiClient.post(`/employees`, employee);

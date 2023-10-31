@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import {
   retrieveEmployee,
   updateEmp,
-  retrieveAllEmployees,
+  createEmp,
 } from "./api_services/EmployeeApiService";
 import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import HeaderComponent from "./HeaderComponent";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+
 export default function EmployeeComponent() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -21,19 +22,21 @@ export default function EmployeeComponent() {
   const [email, setEmail] = useState("");
 
   function loadEmpData() {
-    retrieveEmployee(id)
-      .then((response) => {
-        setFullname(response.data.fullName);
-        setAddress(response.data.address);
-        setBirthDate(response.data.birthDate);
-        setEmail(response.data.emailAddress);
-      })
-      .catch((error) => console.log(error));
+    if (id != 0) {
+      retrieveEmployee(id)
+        .then((response) => {
+          setFullname(response.data.fullName);
+          setAddress(response.data.address);
+          setBirthDate(response.data.birthDate);
+          setEmail(response.data.emailAddress);
+        })
+        .catch((error) => console.log(error));
+    }
   }
 
-  const updateMsg = () => {
+  const updateMsg = (msg) => {
     Swal.fire({
-      title: "updated successfully",
+      title: `${msg}`,
       text: "",
       icon: "success",
       confirmButtonText: "OK",
@@ -50,12 +53,24 @@ export default function EmployeeComponent() {
       emailAddress: formValues.email,
     };
 
-    updateEmp(employee)
-      .then((response) => {
-        updateMsg();
-        navigate("/emp-list");
-      })
-      .catch((error) => console.log(error));
+    const msg =
+      employee.id === 0 ? "added successfully" : "updated successfully";
+
+    if (employee.id != 0) {
+      updateEmp(employee)
+        .then((response) => {
+          updateMsg(msg);
+          navigate("/emp-list");
+        })
+        .catch((error) => console.log(error));
+    } else {
+      createEmp(employee)
+        .then((response) => {
+          updateMsg(msg);
+          navigate("/emp-list");
+        })
+        .catch((error) => console.log(error));
+    }
   }
 
   function formValidation(formValues) {
@@ -63,7 +78,7 @@ export default function EmployeeComponent() {
 
     if (formValues.fullname.length < 1 || !formValues.fullname.includes(" "))
       error.fullname = "Full name required";
-    if (formValues.birthDate === null)
+    if (formValues.birthDate === null || formValues.birthDate === "")
       error.birthDate = "Date of birth required";
     if (formValues.email.length < 1 || !formValues.email.includes("@"))
       error.email = "Invalid email";
