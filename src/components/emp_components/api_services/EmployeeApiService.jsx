@@ -1,15 +1,22 @@
-import axios from "axios";
-
-const apiClient = axios.create({
-  baseURL: "http://localhost:8080",
-});
+import { apiClient } from "./ApiClient";
 
 export const retrieveAllEmployees = () => apiClient.get("/employees");
 
-export const deleteEmp = (id) => apiClient.delete(`/employees/${id}`);
+export const deleteEmp = (id, token) => apiClient.delete(`/employees/${id}`);
 
-export const retrieveEmployee = (id) => apiClient.get(`/employees/${id}`);
+export const retrieveEmployee = (id, token) =>
+  apiClient.get(`/employees/${id}`);
 
-export const updateEmp = (employee) => apiClient.put(`/employees`, employee);
+export const updateEmp = (employee, token) =>
+  apiClient.put(`/employees`, employee);
 
-export const createEmp = (employee) => apiClient.post(`/employees`, employee);
+export const createEmp = (employee, token) =>
+  apiClient.post(`/employees`, employee);
+
+//execute the basic auth api
+export const runBasicAuth = (token) =>
+  apiClient.get("/auth", {
+    headers: {
+      Authorization: token,
+    },
+  });

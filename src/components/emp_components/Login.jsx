@@ -6,8 +6,8 @@ import Swal from "sweetalert2";
 import { useAuthContext } from "./security/AuthContext";
 
 export default function Login() {
-  const [username, setUsername] = useState("clifford");
-  const [password, setPass] = useState("12345");
+  const [username, setUsername] = useState("");
+  const [password, setPass] = useState("");
   const [failedMsg, setFailMsg] = useState(false);
   const navigate = useNavigate();
   const authContext = useAuthContext();
@@ -29,8 +29,8 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = function () {
-    if (authContext.loginUser(username, password)) {
+  const handleSubmit = async function () {
+    if (await authContext.loginUser(username, password)) {
       alertMsg();
       navigate("/emp-list");
     } else {
